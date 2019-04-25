@@ -1,0 +1,36 @@
+<div id="floating-content">
+    <h1 class="text-center text-white"><i class="fas fa-hamburger"></i>&nbsp; B U R G E R</h1>
+
+    <div class="form-container">
+
+        <div class="burger-box burgers-ready">
+            <h5>Ready <span class="ready-count"></span></h5>
+            <ol>
+                {{#each burgers}}
+                    {{#unless devoured}}
+                    <li>{{burger_name}} <a href="#" class="devour" data-id="{{id}}">Devour</a></li>
+                    {{/unless}}
+                {{/each}}
+            </ol>
+        </div>
+
+        <div class="burger-box burgers-devoured">
+            <h5>Devoured <span class="devoured-count"></span></h5>
+             <ol>
+                {{#each burgers}}
+                    {{#if devoured}}
+                    <li>{{burger_name}}</li>
+                    {{/if}}
+                {{/each}}
+            </ol>
+        </div>
+       
+        <form class="create-form">
+            <div class="form-group">
+                <label for="ca"><i class="fas fa-hamburger"></i>&nbsp; Add Custom Burger:</label>
+                <input type="text" id="burger_name" name="burger_name" placeholder="Burger Name">
+            </div>
+            <button type="submit">Add Burger</button>
+        </form>
+    </div>
+</div>
