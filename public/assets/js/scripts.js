@@ -2,9 +2,10 @@ $(".create-form").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
-    if($("#burger_name").val().length > 3) {
-        $("#burger_name").removeClass("error");
+   
+        $("#burger_name,#customer").removeClass("error");
         var newBurger = {
+            CustomerId: $("#customer").val().trim(),
             burger_name: $("#burger_name").val().trim(),
             devoured: 0
           };
@@ -15,17 +16,43 @@ $(".create-form").on("submit", function(event) {
           $.ajax("/api/burgers", {
             type: "POST",
             data: newBurger
-          }).then(
-            function() {
+          }).then(function() {
               console.log("created new burger");
               // Reload the page to get the updated list
               location.reload();
             }
-          );
+          ).fail(function(){
+            $("#burger_name,#customer").addClass("error");
+          });
+    
+  });
 
-    } else {
-        $("#burger_name").addClass("error");
-    }
+  $(".add-customer-form").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+
+    
+        $("#customer_name").removeClass("error");
+        var newCustomer = {
+            customer_name: $("#customer_name").val().trim()
+
+          };
+      
+          console.log("newCustomer",newCustomer);
+      
+          // Send the POST request.
+          $.ajax("/api/customer", {
+            type: "POST",
+            data: newCustomer
+          }).then(function() {
+        
+              console.log("created new burger");
+              // Reload the page to get the updated list
+              location.reload();
+            }
+          ).fail(function(){
+            $("#customer_name").addClass("error");
+        });
     
   });
 

@@ -14,19 +14,16 @@ H1, H2, H3, H4, H5 {
 }
 
 .burger-box {
-    padding: 15px;
+    padding: 15px 15px 10px 15px;
     border-radius: 5px;
     background: rgba(255,255,255,0.6);
-    position: absolute; 
-    left: -170px;
-    top: -220px;
-    width: 300px;
+    margin: 30px 0 20px 0;
+    width: 48%;
     float: left; 
 }
 
 .burger-box.burgers-devoured {
-    right: -170px;
-    left: auto;
+    float: right;
 }
 .burger-box H5 { 
     display: block; 
@@ -35,14 +32,26 @@ H1, H2, H3, H4, H5 {
     margin: 0 0 10px 0;
 }
 
+.burger-box p {
+    display: block;
+    margin: 10px 0 0 0;
+    padding: 0;
+    text-align: center;
+    color: #555;
+    font-family: Helvetica, sans-serif;
+    font-size: 12px;
+}
+
 .burger-box ol { 
     margin : 0 0 0 0;
-    padding: 0 0 0 20px;
+    padding: 10px;
     min-height: 150px;
     max-height: 150px;
     overflow-y: scroll;
+    border: 1px solid #CCC;
 }
 .burger-box ol li { 
+    list-style: none;
     line-height: 1.2em;
     margin: 0 0 6px 0;
     color: #333;
@@ -86,6 +95,19 @@ H1, H2, H3, H4, H5 {
 .burgers-ready li {
     padding: 3px 0 5px;
     padding-right: 50px;
+    
+}
+
+.burgers-devoured li span,
+.burgers-ready li span {
+    color: #555;
+    padding: 4px 0 10px;
+    line-height: 1.2em;
+    font-size: 12px;
+    display: block;
+    font-family: Helvetica;
+    clear: both;
+    border-bottom: 1px solid #CCC;
 }
 
 .ready-count, .devoured-count { 
@@ -95,14 +117,11 @@ H1, H2, H3, H4, H5 {
 }
 
 .form-container {
-    position: absolute; 
-    bottom: -90px;
-    padding: 30px;
-    left: 0px; 
+
     width: 100%;
 }
 
-.create-form {
+.form-content {
     background: rgba(255,255,255,.75);
     border-radius: 4px;
     width: 100%;
@@ -110,25 +129,33 @@ H1, H2, H3, H4, H5 {
     padding: 30px;
 }
 
-.create-form label { 
+.form-content label { 
     display: block; 
     clear: both;
 }
-.create-form input {
+.form-content select, 
+.form-content input {
     font-family: Arial, Helvetica, sans-serif;
     float: left;
+    height: 33px;
     margin: 8px 10px 10px 0;
     border: 1px solid #999;
     border-radius: 4px;
     padding: 4px 10px;
-    width: 77%;
+    width: 70%;
 }
 
-.create-form input.error { 
+.form-content select {
+    margin: 0;
+    clear: both;
+}
+
+.form-content select.error, 
+.form-content input.error { 
     border: 1px solid #FF0000;
 }
 
-.create-form button {
+.form-content button {
     font-family: Arial, Helvetica, sans-serif;
     float: left;
     margin: 0 0px 0 0;
@@ -139,6 +166,8 @@ H1, H2, H3, H4, H5 {
     text-transform: uppercase;
     font-size: 11px;
     height: 34px;
+    min-width: 120px;
+    text-align: center;
 }
 
 @media(max-width: 990px) {

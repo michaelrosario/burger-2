@@ -6,18 +6,44 @@ module.exports = function(app) {
 
   // GET route for getting all of the todos
   app.get("/", function(req, res) {
-    db.Burgers.findAll({}).then(function(burgers) {
+    db.Burgers.findAll({
+      order: [
+        ['burger_name', 'ASC'],
+      ],
+      include: [
+        {
+          model: db.Customers
+        }
+      ],
+    }).then(function(burgers) {
       // We have access to the todos as an argument inside of the callback function
-      res.render("index",{burgers});
+      console.log(burgers);
+      db.Customers.findAll().then(function(users){
+        res.render("index",{burgers,users});
+      });
+     
     });
   });
 
   app.post("/api/burgers", function(req, res) {
     db.Burgers.create({
       burger_name: req.body.burger_name,
+      CustomerId: req.body.CustomerId
     }).then(function(results) {
       res.json(results);
-    });
+    }).catch(function(error) {
+      return res.status(500).send(error);
+    }); 
+  });
+
+  app.post("/api/customer", function(req, res) {
+    db.Customers.create({
+      customer_name: req.body.customer_name,
+    }).then(function(results) {
+      res.json(results);
+    }).catch(function(error) {
+      return res.status(500).send(error);
+    }); 
   });
 
   app.put("/api/burgers/:id", function(req, res) {

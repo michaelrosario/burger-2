@@ -1,3 +1,4 @@
+'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Burgers = sequelize.define("Burgers", {
     burger_name: {
@@ -12,5 +13,15 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: false
     }
   });
+
+  Burgers.associate = function (models) {
+    models.Burgers.belongsTo(models.Customers, {
+      onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
   return Burgers;
 }

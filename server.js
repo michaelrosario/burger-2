@@ -34,12 +34,17 @@ require("./routes/api-routes.js")(app);
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({force:true}).then(function() {
+  db.Customers.create({
+    customer_name: 'Michael Rosario',
+  });
   db.Burgers.create({
     burger_name: 'The Regular Burger and Cheese',
-  })
+    CustomerId: 1,
+  });
   db.Burgers.create({
     burger_name: 'Mushroom Overload Burger',
-  })
+    CustomerId: 1,
+  });
   app.listen(PORT, function() {
     console.log("Server listening on: http://localhost:" + PORT);
   });
